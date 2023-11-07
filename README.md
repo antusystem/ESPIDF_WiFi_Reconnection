@@ -35,8 +35,8 @@ To use the LED to show the connection status you must indicate the GPIO, in the 
 
 ## Log
 
-* Last compile: September 26t 2023.
-* Last test: September 26t 2023.
+* Last compile: 06 November 2023.
+* Last test: 06 November 2023.
 * Last compile espidf version: `v 5.1.1`.
 * VSCode ESP-IDF Visual Studio Code Extension `v 1.6.5`.
 
