@@ -1,12 +1,9 @@
 /* WiFi station with reconnection
  *
- * File: wifi_handler.c
+ * File: esp_wifi_config.h
  * Author: antusystem <aleantunes95@gmail.com>
  * Date: 26th October 2023
- * Description: The examples use WiFi configuration that you can set via project configuration menu
- * If you'd rather not, just change the below entries to strings with
- * the config you want - ie #define ESP_WIFI_SSID "mywifissid".
- * This header file declares functions and data structures for the example module.
+ * Description: WiFi header.
  * 
  * This file is subject to the terms of the Apache License, Version 2.0, January 2004.
 */
