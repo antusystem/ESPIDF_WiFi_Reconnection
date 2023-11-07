@@ -1,0 +1,6 @@
+.devcontainer
+.vscode
+build
+debug.log
+doc_example.md
+sdkconfig
