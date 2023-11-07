@@ -169,6 +169,7 @@ void ESP_WIFI_Task(void *P){
     }
     ESP_ERROR_CHECK(ret);
     EventBits_t bits;
+    int retry_delay = 1;
     ESP_LOGI(WIFI_TAG, "ESP_WIFI_MODE_STA");
     wifi_init_sta();
     for(;;){
@@ -196,6 +197,8 @@ void ESP_WIFI_Task(void *P){
                 s_wifi_event_group,
                 WIFI_CONNECTED_BIT | WIFI_FAIL_BIT | LED_BIT
             );
+            //Changing retry_delay
+            retry_delay = 1;
             // Changing conecction status
             connection_status = 1;
             // xEventGroupClearBits(
@@ -218,8 +221,13 @@ void ESP_WIFI_Task(void *P){
                 ESP_WIFI_SSID,
                 ESP_WIFI_PASSWORD
             );
-            // Waiting time before next retry, set to 10s
-            vTaskDelay(RETRY_TIME / portTICK_PERIOD_MS);
+            // Waiting time before next retry, set to 10s * the delay
+            // vTaskDelay(RETRY_TIME / portTICK_PERIOD_MS);
+            vTaskDelay(RETRY_TIME * retry_delay / portTICK_PERIOD_MS);
+            ESP_LOGE(WIFI_TAG, "retry_delay: %d", retry_delay);
+            if (32 > retry_delay){
+                retry_delay *= 2;  // Exponential backoff
+            }
             // Retry to connect to WiFi
             esp_wifi_connect();
             ESP_LOGI(WIFI_TAG, "retry to connect to the AP");
